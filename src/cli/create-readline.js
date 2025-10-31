@@ -2,14 +2,15 @@ import { stdin, stdout } from 'node:process';
 import readline from 'node:readline/promises';
 import { EOL } from 'node:os';
 import exitCli from './exit-cli.js';
+import { MESSAGES } from '../core/app-constants.js';
 
 const createReadline = (state) => {
     const { username, currentDir } = state;
 
-    console.log(`Welcome to the File Manager, ${username}!`);
+    console.log(MESSAGES.START(username));
 
     const cli = readline.createInterface({ input: stdin, output: stdout });
-    cli.setPrompt(`You are currently in ${currentDir}${EOL}`);
+    cli.setPrompt(MESSAGES.DIR(currentDir));
 
     cli.prompt();
 
