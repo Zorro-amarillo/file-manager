@@ -2,26 +2,25 @@ import { stdin, stdout } from 'node:process';
 import readline from 'node:readline/promises';
 import { EOL } from 'node:os';
 import exitCli from './exit-cli.js';
-import { MESSAGES } from '../core/app-constants.js';
+import { COMMANDS, MESSAGES } from '../core/app-constants.js';
 
 const createReadline = (state) => {
-    const { username, currentDir } = state;
-
-    console.log(MESSAGES.START(username));
+    console.log(MESSAGES.START(state.username));
 
     const cli = readline.createInterface({ input: stdin, output: stdout });
-    cli.setPrompt(MESSAGES.DIR(currentDir));
+    cli.setPrompt(MESSAGES.DIR(state.currentDir));
 
     cli.prompt();
 
     cli.on('SIGINT', () => {
-        exitCli(username, cli);
+        exitCli(state.username, cli);
     });
 
     cli.on('line', (input) => {
-        if (input.trim() === '.exit') {
-            exitCli(username, cli);
-            return;
+        const commandName = input.trim();
+
+        if (COMMANDS[commandName]) {
+            COMMANDS[commandName](state, cli);
         }
 
         stdout.write(EOL);
