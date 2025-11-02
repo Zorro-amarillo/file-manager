@@ -2,6 +2,7 @@ import { EOL } from 'node:os';
 import { exit } from 'node:process';
 import up from '../commands/up.js';
 import cd from '../commands/cd.js';
+import os from '../commands/os.js';
 
 export const MESSAGES = {
   START: (user) => `Welcome to the File Manager, ${user}!`,
@@ -14,6 +15,7 @@ export const MESSAGES = {
 export const COMMANDS = {
   up,
   cd,
+  os,
   '.exit': ({ state, cli }) => {
     console.log(MESSAGES.EXIT(state.username));
     cli.close();
