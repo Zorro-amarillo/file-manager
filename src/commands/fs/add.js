@@ -8,7 +8,7 @@ const add = async ({ state, args }) => {
     const isValidName = name => !/[*?"<>|:/\\]/.test(name);
 
     if (!fileName || !fileName.trim() || !isValidName(fileName)) {
-      console.log(MESSAGES.INVALID_INPUT());
+      console.error(MESSAGES.INVALID_INPUT());
       return;
     }
 
