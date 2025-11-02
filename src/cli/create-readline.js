@@ -21,6 +21,8 @@ const createReadline = (state) => {
 
     if (COMMANDS[commandName]) {
       await COMMANDS[commandName]({ state, cli, args });
+    } else {
+      console.error(MESSAGES.INVALID_INPUT());
     }
 
     stdout.write(EOL);
