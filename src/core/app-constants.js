@@ -11,6 +11,7 @@ import rm from '../commands/fs/rm.js';
 import rn from '../commands/fs/rn.js';
 import cat from '../commands/fs/cat.js';
 import ls from '../commands/fs/ls.js';
+import hash from '../commands/hash.js';
 
 export const MESSAGES = {
   START: (user) => `Welcome to the File Manager, ${user}!`,
@@ -30,6 +31,7 @@ export const COMMANDS = {
   rn,
   cat,
   ls,
+  hash,
   '.exit': ({ state, cli }) => {
     console.log(MESSAGES.EXIT(state.username));
     cli.close();
