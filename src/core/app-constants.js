@@ -1,8 +1,11 @@
 import { EOL } from 'node:os';
 import { exit } from 'node:process';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import up from '../commands/up.js';
 import cd from '../commands/cd.js';
 import os from '../commands/os.js';
+import add from '../commands/fs/add.js';
 
 export const MESSAGES = {
   START: (user) => `Welcome to the File Manager, ${user}!`,
@@ -16,9 +19,13 @@ export const COMMANDS = {
   up,
   cd,
   os,
+  add,
   '.exit': ({ state, cli }) => {
     console.log(MESSAGES.EXIT(state.username));
     cli.close();
     exit();
   },
 };
+
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
