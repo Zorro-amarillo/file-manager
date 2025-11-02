@@ -8,6 +8,7 @@ import os from '../commands/os.js';
 import add from '../commands/fs/add.js';
 import mkDir from '../commands/fs/mkdir.js';
 import rm from '../commands/fs/rm.js';
+import rn from '../commands/fs/rn.js';
 
 export const MESSAGES = {
   START: (user) => `Welcome to the File Manager, ${user}!`,
@@ -24,6 +25,7 @@ export const COMMANDS = {
   add,
   mkdir: mkDir,
   rm,
+  rn,
   '.exit': ({ state, cli }) => {
     console.log(MESSAGES.EXIT(state.username));
     cli.close();
